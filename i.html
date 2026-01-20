@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖК ЛЕГЕНДА - Елітна нерухомість</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a1a1a;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80') center/cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .features {
+            background: white;
+            padding: 80px 40px;
+            border-radius: 10px;
+            margin: 80px auto;
+            max-width: 1400px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .apartments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .apartment-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .apartment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .apartment-image {
+            height: 250px;
+            background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80') center/cover;
+        }
+
+        .apartment-info {
+            padding: 25px;
+        }
+
+        .apartment-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .apartment-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .mortgage {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .mortgage h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .mortgage p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .apartments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ЛЕГЕНДА</div>
+            <ul class="nav-links">
+                <li><a href="#about">КВАРТИРИ</a></li>
+                <li><a href="#planning">ПЛАНУВАННЯ</a></li>
+                <li><a href="#location">РОЗТАШУВАННЯ</a></li>
+                <li><a href="#contact">КОНТАКТИ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ВІДКРИТТЯ ПРОДАЖ<br>В ЖК ЛЕГЕНДА</h1>
+            <p>Преміальне житло в серці міста</p>
+            <a href="#contact" class="btn">ДІЗНАТИСЬ БІЛЬШЕ</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>ЛЕГЕНДА — ЦЕ НЕ ПРОСТО НАЗВА ЖК, ЦЕ УРОЦИТЕ ВАШОЇ ЖИТЛО!</h2>
+                <p>Ми даруємо дім, де хочеться доступати й чекавати</p>
+                <p>Для вашого комфорту й безпеки ми надаємо сучасні рішення та передові технології</p>
+                <a href="#apartments" class="btn">ПЕРЕГЛЯНУТИ</a>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <div class="features">
+        <h2 class="section-title">РОЗКІШНИЙ ФАСАД ЩО ЗАХОПЛЮЄ УЯВЛЕННЯ</h2>
+        <p style="color: #666; font-size: 18px; margin-bottom: 40px;">Архітектурні рішення з експертами дизайну створювали кожну деталь</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>Автоматизовані рішення охорони</h3>
+                <p>Цілодобова охорона з передовими системами безпеки</p>
+            </div>
+            <div class="feature-item">
+                <h3>Паркування</h3>
+                <p>Підземний та наземний паркінг для мешканців</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="apartments">
+        <h2 class="section-title">ВИБЕРІТЕ ПЛАНУВАННЯ</h2>
+        <p style="color: #666; font-size: 18px; margin-bottom: 40px;">Простора квартира для комфортного життя</p>
+        <div class="apartments-grid">
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 1</h3>
+                    <p>Просторна квартира з оптимальним планування</p>
+                </div>
+            </div>
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 2</h3>
+                    <p>Панорамні вікна та ергономічне планування</p>
+                </div>
+            </div>
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 3</h3>
+                    <p>Сучасний дизайн та функціональність</p>
+                </div>
+            </div>
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 4</h3>
+                    <p>Розкішна квартира з видовими вікнами</p>
+                </div>
+            </div>
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 5</h3>
+                    <p>Ергономічна планування з максимальним комфортом</p>
+                </div>
+            </div>
+            <div class="apartment-card">
+                <div class="apartment-image" style="background-image: url('https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=600&q=80')"></div>
+                <div class="apartment-info">
+                    <h3>КВАРТИРА 6</h3>
+                    <p>Преміальне житло з унікальним плануванням</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="mortgage">
+        <h2>ІПОТЕКА ЗА ДОПОМОГОЮ НАШИХ ПЕРЕВІРЕНИХ КЛІЄНТІВ</h2>
+        <p>Вигідні умови кредитування для наших клієнтів</p>
+        <a href="#contact" class="btn" style="background: white; color: #667eea;">ДІЗНАТИСЬ УМОВИ</a>
+    </div>
+
+    <footer id="contact">
+        <p>&copy; 2025 ЖК ЛЕГЕНДА. Всі права захищені.</p>
+        <p style="margin-top: 10px;">Контакти: +380 XX XXX XX XX | info@legend.ua</p>
+    </footer>
+</body>
+</html>
